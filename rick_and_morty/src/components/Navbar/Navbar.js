@@ -1,16 +1,10 @@
 import './Navbar.scss';
 import React from "react";
 
-const Navbar = ({ brand }) => {
+export default function Сatalog() {
   return (
-    <nav className="navbar navbar-dark bg-dark">
-      <div className="navbar-container">
-        <a className="navbar-brand text-uppercase" href="/">
-          {brand}
-        </a>
+      <div className="navbar">
+        <a className='navbar-text' href='/'>erio;rnbiopnt obrtbrtb</a>
       </div>
-    </nav>
   );
-};
-
-export default Navbar;
+}

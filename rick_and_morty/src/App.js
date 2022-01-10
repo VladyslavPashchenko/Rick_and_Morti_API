@@ -1,66 +1,59 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Navbar from "./components/Navbar/Navbar";
-import CharacterList from "./components/CharacterList/CharacterList";
+import React, { useState, useEffect } from "react";
+import Card from "./components/Card/Card";
+import TEST from "./components/Navbar/Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import CardDetails from "./components/Card/CardDetails";
+
 
 function App() {
-  const [characters, setCharacters] = useState([]);
-  const [info, setInfo] = useState({});
-  const url = "https://rickandmortyapi.com/api/character";
-
-  const fetchCharacters = (url) => {
-    axios
-      .get(url)
-      .then((data) => {
-        setCharacters(data.data.results);
-        setInfo(data.data.info);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleNextPage = () => {
-    fetchCharacters(info.next);
-    window.scrollTo(0, 0);
-  };
-
-  const handlePreviousPage = () => {
-    fetchCharacters(info.prev);
-    window.scrollTo(0, 0);
-  };
-
-  useEffect(() => {
-    fetchCharacters(url);
-  }, []);
-
   return (
-    <>
-      <Navbar brand="The Rick and Morty API" />
-
-      <div className="container py-5">
-        <nav>
-          <ul className="pagination justify-content-center">
-            {info.prev ? (
-              <li className="page-item">
-                <button className="page-link" onClick={handlePreviousPage}>
-                  Previous
-                </button>
-              </li>
-            ) : null}
-            {info.next ? (
-              <li className="page-item">
-                <button className="page-link" onClick={handleNextPage}>
-                  Next
-                </button>
-              </li>
-            ) : null}
-          </ul>
-        </nav>
+    <Router>
+      <div className="App">
       </div>
-      <CharacterList characters={characters} />
-    </>
+      <Switch>
+        <Route path="/:id">
+          <CardDetails />
+        </Route>
+        <Route path="/" >
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
+
+const Home = () => {
+  let [pageNumber] = useState(1);
+  let [status] = useState("");
+  let [gender] = useState("");
+  let [species] = useState("");
+  let [fetchedData, updateFetchedData] = useState([]);
+  let [search] = useState("");
+  let { results } = fetchedData;
+
+  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
+
+  useEffect(() => {
+    (async function () {
+      let data = await fetch(api).then((res) => res.json());
+      updateFetchedData(data);
+    })();
+  }, [api]);
+  return (
+    <div className="App">
+      <TEST />
+      <h1 className="text-center mb-3">Characters</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8 col-12">
+            <div className="row">
+              <Card page="/" results={results} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;
