@@ -1,7 +1,7 @@
 import "./Card.scss";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import TEST from "../Navbar/Navbar";
+import TEST from "../Header/Header";
 
 const CardDetails = () => {
   let { id } = useParams();
@@ -24,8 +24,8 @@ const CardDetails = () => {
       <TEST />
       <div className="profile">
         <div className="profile__container">
-          <h1 className="text-center">{name}</h1>
-          <img className="img-fluid" src={image} alt="" />
+          <h1 className="profile__text-center">{name}</h1>
+          <img className="profile__img" src={image} alt="" />
           {(() => {
             if (status === "Dead") {
               return <div className="danger bg-styles">{status}</div>;
@@ -37,23 +37,23 @@ const CardDetails = () => {
           })()}
           <div className="content">
             <div className="card__status">
-              <span className="fw-bold">Gender : </span>
+              <span className="card__gender">Gender : </span>
               {gender}
             </div>
             <div className="">
-              <span className="fw-bold">Location: </span>
+              <span className="card__location">Location: </span>
               {location?.name}
             </div>
             <div className="">
-              <span className="fw-bold">Origin: </span>
+              <span className="card__origin">Origin: </span>
               {origin?.name}
             </div>
             <div className="">
-              <span className="fw-bold">Species: </span>
+              <span className="card__species">Species: </span>
               {species}
             </div>
             <div className="">
-              <span className="fw-bold">Created: </span>
+              <span className="card__created">Created: </span>
               {created}
             </div>
           </div>

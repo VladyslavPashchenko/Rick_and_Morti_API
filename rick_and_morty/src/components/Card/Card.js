@@ -14,7 +14,7 @@ const Card = ({ page, results }) => {
           to={`${page}${id}`}
           key={id} className="card">
           <div className="card__character">
-            <img className="img-fluid" src={image} alt="" />
+            <img className="card__img" src={image} alt="" />
             <div className= "card__info">
             <div className="card__text">
               <div className="card__name name__styles">{name}</div>

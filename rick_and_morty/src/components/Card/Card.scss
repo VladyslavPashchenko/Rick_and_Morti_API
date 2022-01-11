@@ -9,6 +9,8 @@ body {
 }
 
 .card {
+  border: none !important;
+
   &__character {
     width: 455px;
     height: 220px;
@@ -20,6 +22,7 @@ body {
     border: 5px solid;
     outline: none;
   }
+
   &__info {
     display: flex;
     flex-direction: column;
@@ -44,11 +47,6 @@ body {
   &-title {
     font-size: 1.5rem;
   }
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }
 
 .profile {
@@ -108,8 +106,26 @@ a {
   border-radius: 5px;
   margin: 15px 0 15px 0px;
 }
+
 .name__styles {
   font-weight: 600;
   font-size: 30px;
   color: #ffffffd2;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.row > * {
+  width: 503px !important;
+}
+
+.profile__img {
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
