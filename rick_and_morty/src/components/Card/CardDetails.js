@@ -1,7 +1,7 @@
 import "./Card.scss";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import TEST from "../Header/Header";
+import Header from "../Header/Header";
 
 const CardDetails = () => {
   let { id } = useParams();
@@ -21,7 +21,7 @@ const CardDetails = () => {
 
   return (
     <>
-      <TEST />
+      <Header />
       <div className="profile">
         <div className="profile__container">
           <h1 className="profile__text-center">{name}</h1>
